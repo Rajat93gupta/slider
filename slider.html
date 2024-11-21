@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Impact Section</title>
+    <style>
+        /* Reset */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        /* Container */
+        .case-impact-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #f9f9f9;
+            padding: 50px 20px;
+            overflow: hidden;
+            margin-left: 7rem;
+        }
+
+        /* Image Block */
+        .image-block {
+            flex-shrink: 0;
+            width: 50%;
+            /* Take half the width for image */
+            height: auto;
+            transition: opacity 0.5s ease;
+            /* smooth opacity transition */
+            position: relative;
+            /* To position overlay correctly */
+        }
+
+        .image-block img {
+            width: 100%;
+            border-radius: 5px;
+            max-width: 634px;
+            height: 430px;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: absolute;
+            top: 20%;
+            left: 0;
+            background: #0D3D96;
+
+
+            color: white;
+            padding: 24px;
+            border-radius: 5px;
+            width: 30%;
+            /* Take half the container width */
+            height: 278px;
+            width: 357px;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .overlay h3 {
+
+            font-family: Helvetica Neue;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 40px;
+            letter-spacing: -0.20000000298023224px;
+            text-align: left;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+
+        }
+
+        .overlay .overlayPD {
+            font-family: Helvetica Neue;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: -0.20000000298023224px;
+            text-align: left;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+
+        }
+
+        .overlay button {
+            padding: 10px 20px;
+            border: none;
+            background-color: white;
+            color: blue;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        /* Images Container */
+        .images-container {
+            display: flex;
+            gap: 10px;
+            position: relative;
+            transition: transform 0.5s ease;
+            /* smooth transition */
+            width: 100%;
+            margin-left: 10rem;
+        }
+
+        .action {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            width: 42%;
+            left: 161px;
+            align-items: center;
+        }
+
+        .line-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Small and Large Lines */
+        .line {
+            height: 2px;
+            background-color: gray;
+            width: 100px;
+        }
+
+        .line.large {
+            width: 285px;
+        }
+
+        /* Active small line */
+        .line.active {
+            background-color: blue;
+        }
+
+        .arrowBtn {
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .LeanrMore {
+            font-family: Helvetica Neue;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 15.92px;
+            letter-spacing: -0.002em;
+            text-align: left;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+
+        }
+
+        .HR {
+            margin-top: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .MainBox {
+            background: #F8F9F3;
+
+        }
+    </style>
+</head>
+
+<body>
+    <section class="MainBox">
+
+
+        <div class="case-impact-container">
+            <!-- Overlay -->
+            <div class="overlay">
+                <h3 id="overlay-title">> 80% Case Impact Rate</h3>
+                <p class="overlayPD" id="overlay-description">
+                    Our coordinated approach has demonstrated value for complex patient conditions.
+
+                </p>
+                <hr class="HR" />
+                <p class="LeanrMore">Learn More</p>
+                <!-- <button onclick="nextImage()">Next →</button> -->
+            </div>
+            <div class="action">
+                <span class="arrowBtn" onclick="previousImage()">&#8592;</span>
+                <div class="line-container">
+                    <!-- Lines -->
+                    <div class="line small" id="line-small"></div>
+                    <div class="line large"></div>
+                </div>
+                <span class="arrowBtn" onclick="nextImage()"> &#8594;</span>
+            </div>
+
+            <!-- Content Section -->
+            <div class="images-container" id="images-container">
+                <!-- Images -->
+                <div class="image-block" id="image-1">
+                    <img src="./pat.png" alt="Image 1">
+                </div>
+                <div class="image-block" id="image-2">
+                    <img src="./clo.png" alt="Image 2">
+                </div>
+                <div class="image-block" id="image-1">
+                    <img src="./pat.png" alt="Image 1">
+                </div>
+                <div class="image-block" id="image-2">
+                    <img src="./clo.png" alt="Image 2">
+                </div>
+                <div class="image-block" id="image-1">
+                    <img src="./pat.png" alt="Image 1">
+                </div>
+                <div class="image-block" id="image-2">
+                    <img src="./clo.png" alt="Image 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // JavaScript to handle overlay updates and image shifting
+        const overlayTitle = document.getElementById("overlay-title");
+        const overlayDescription = document.getElementById("overlay-description");
+
+        const overlayData = [
+            {
+                title: "80% Case Impact Rate",
+                description: "Our coordinated approach has demonstrated value for complex patient conditions.",
+            },
+            {
+                title: "Improved Patient Outcomes",
+                description: "Helping patients achieve better health with personalized care.",
+            },
+            {
+                title: "Efficient Case Handling",
+                description: "Ensuring timely and accurate solutions for every case.",
+            },
+            {
+                title: "Seamless Coordination",
+                description: "Collaboration that bridges the gap in patient care.",
+            },
+            {
+                title: "Maximized Results",
+                description: "Achieving new standards in healthcare solutions.",
+            },
+        ];
+
+        let currentIndex = 0;
+        const imageWidth = 634;
+
+        function nextImage() {
+            const imageBlocks = document.querySelectorAll(".image-block");
+
+            // Check if there are more images to show
+            if (currentIndex < overlayData.length - 1) {
+                currentIndex++;
+
+                // Update overlay content
+                overlayTitle.textContent = overlayData[currentIndex].title;
+                overlayDescription.textContent = overlayData[currentIndex].description;
+
+                // Slide the images to the left and reset opacity of the new image
+                const offset = imageWidth * currentIndex;// Offset for sliding images
+                console.log(offset);
+                
+
+                // Move the container to the left
+                document.getElementById("images-container").style.transform = `translateX(-${offset}px)`;
+
+                // Loop through all images and update opacity
+                const images = document.querySelectorAll(".image-block");
+                for (let i = 0; i < images.length; i++) {
+                    if (i < currentIndex) {
+                        // Fade out previous images
+                        images[i].style.opacity = "0";
+                    } else if (i === currentIndex) {
+                        // Make the new image fully visible
+                        images[i].style.opacity = "1";
+                    } else {
+                        // Keep the images that haven't come into view at full opacity
+                        images[i].style.opacity = "1";
+                    }
+                }
+            }
+        }
+
+        function previousImage() {
+            const imageBlocks = document.querySelectorAll(".image-block");
+
+            // Check if there are images to show before the current image
+            if (currentIndex > 0) {
+                currentIndex--;
+
+                // Update overlay content
+                overlayTitle.textContent = overlayData[currentIndex].title;
+                overlayDescription.textContent = overlayData[currentIndex].description;
+
+                // Slide the images to the right and reset opacity of the new image
+                const offset = currentIndex * 500; // Offset for sliding images
+
+                // Move the container to the right
+                document.getElementById("images-container").style.transform = `translateX(-${offset}px)`;
+
+                // Loop through all images and update opacity
+                const images = document.querySelectorAll(".image-block");
+                for (let i = 0; i < images.length; i++) {
+                    if (i < currentIndex) {
+                        // Fade out previous images
+                        images[i].style.opacity = "0";
+                    } else if (i === currentIndex) {
+                        // Make the new image fully visible
+                        images[i].style.opacity = "1";
+                    } else {
+                        // Keep the images that haven't come into view at full opacity
+                        images[i].style.opacity = "1";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
